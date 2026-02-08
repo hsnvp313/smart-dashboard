@@ -1,47 +1,51 @@
-function Orders(){
-    const orders=[
-        {id:1001,customer: "Ahmed", status:"Completed"},
-        {id:1002,customer: "Mohamed", status:"Pending"},
-        {id:1003,customer: "Ali", status:"Cancelled"},
-    ];
-    return(
-        <div>
-            <h2>Orders</h2>
+function Orders() {
+  const orders = [
+    { id: 1001, customer: "Ahmed", status: "Completed", total: 320 },
+    { id: 1002, customer: "Sarah", status: "Pending", total: 180 },
+    { id: 1003, customer: "Mohammed", status: "Cancelled", total: 540 },
+  ];
 
-            <table style={StyleSheet.table}>
-                <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Customer</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map((order) =>
-                            (<tr key={order.id}>
-                            <td>#{order.id}</td>
-                            <td>{order.customer}</td>
-                            <td style={{
-                                color:
-                                    order.status === "Completed" ? "green" :
-                                    order.status === "Pending" ? "orange" :
-                                    order.status === "Cancelled" ? "red" : "inherit"
-                            }}>
-                                    {order.status}
-                            </td>
-                        </tr>
-                            ))}
-                    </tbody>
-            </table>
-        </div>
-    );
+  const statusConfig = {
+    Completed: { class: 'status-completed', label: 'Completed' },
+    Pending: { class: 'status-pending', label: 'Pending' },
+    Cancelled: { class: 'status-cancelled', label: 'Cancelled' },
+  };
+
+  return (
+    <div className="page-content">
+      <h2 className="page-title">Orders</h2>
+      <div className="orders-table-wrap glass-panel">
+        <table className="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Status</th>
+              <th>Total (AED)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order) => (
+              <tr key={order.id} className="orders-row">
+                <td>
+                  <span className="order-id">#{order.id}</span>
+                </td>
+                <td>{order.customer}</td>
+                <td>
+                  <span className={`status-pill ${statusConfig[order.status]?.class ?? ''}`}>
+                    {order.status}
+                  </span>
+                </td>
+                <td>
+                  <span className="order-total">AED {order.total}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 }
 
-const styles={
-    table:{
-        width:"100%",
-        berderCollapse:"collapse"
-    }
-};
-
-export default Orders
+export default Orders;

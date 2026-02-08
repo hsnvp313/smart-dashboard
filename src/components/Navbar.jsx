@@ -1,22 +1,16 @@
 function Navbar() {
-    return (
-        <div style={styles.nav}>
-            <h2>Smart System</h2>
-            <span>Admin Panel</span>
-        </div>
-    );
+  return (
+    <nav className="navbar-futuristic">
+      <div className="navbar-brand">
+        <span className="navbar-logo-icon">◇</span>
+        <h1 className="navbar-title">Smart System</h1>
+      </div>
+      <div className="navbar-right">
+        <span className="navbar-badge">Admin Panel</span>
+        <span className="navbar-pulse" />
+      </div>
+    </nav>
+  );
 }
 
-const styles={
-    nav:{
-        height:"60px",
-        backgroundColor:"1f2937",
-        color:"white",
-        display:"flex",
-        justifyContent:"space-between",
-        alignItems:"center",
-        padding:"0 20px",
-
-    }
-};
 export default Navbar;
